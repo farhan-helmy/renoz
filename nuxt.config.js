@@ -25,6 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    {src: '~/plugins/vuetify.js', mode: 'client'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,10 +40,11 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
   
   axios: {
-    baseURL: "http://localhost:6000"
+    baseURL: "http://localhost:3001"
   },
   auth: {
     strategies: {
@@ -66,7 +68,7 @@ export default {
           login: { url: '/v1/users/login', method: 'post' },
           //        refresh: { url: "/api/auth/refresh-token", method: "post" },
           logout: false, //  we don't have an endpoint for our logout in our API and we just remove the token from localstorage
-          user: { url: '/v1/user/me', method: 'get' },
+          user: { url: '/v1/users/me', method: 'get' },
         },
       },
     },

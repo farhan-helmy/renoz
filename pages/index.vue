@@ -1,62 +1,95 @@
 <template>
-  <v-main>
-    <v-img contain height="100"></v-img>
-    <v-alert
-      v-if="this.error"
-      dismissible
-      border="right"
-      color="red"
-      type="success"
-      >Wrong username / password!</v-alert
-    >
-    <v-card class="mx-auto" color="#A9A9A9" dark max-width="400" elevation="7">
-      <v-card-title>
-        <v-icon color="black">mdi-account</v-icon>
-        <span class="title font-weight-bold text--primary"
-          >Admin Login Here</span
-        >
-      </v-card-title>
-
-      <v-card-text>
-        <form @submit.prevent="login">
-          <v-text-field
-            v-model="loginData.email"
-            label="Username"
-            prepend-icon="mdi-account-circle"
-            hint="Masukkan username anda"
-          />
-          <v-text-field
-            v-model="loginData.password"
-            label="Password"
-            type="password"
-            prepend-icon="mdi-lock"
-          />
-          <v-row justify="center">
-            <v-btn type="submit">Login</v-btn>
-          </v-row>
-        </form>
-      </v-card-text>
-      <v-divider></v-divider>
-    </v-card>
-    <v-row align="center" justify="center">
-      <!--<v-img
-        contain
-        lazy-src="../assets/logo.png"
-      ></v-img> -->
-    </v-row>
-  </v-main>
+  <v-app>
+    <navigation :color="color" :flat="flat" />
+    <v-main class="pt-0">
+      <home />
+      <about />
+      <download />
+      <pricing />
+      <contact />
+    </v-main>
+    <v-scale-transition>
+      <v-btn
+        fab
+        v-show="fab"
+        v-scroll="onScroll"
+        dark
+        fixed
+        bottom
+        right
+        color="secondary"
+        @click="toTop"
+      >
+        <v-icon>mdi-arrow-up</v-icon>
+      </v-btn>
+    </v-scale-transition>
+    <foote />
+  </v-app>
 </template>
 
+<style scoped>
+.v-main {
+  background-image: url("../assets/img/bgMain.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+</style>
+
 <script>
+import navigation from "../components/landing/Navigation";
+import foote from "../components/landing/Footer";
+import home from "../components/landing/HomeSection";
+import about from "../components/landing/AboutSection";
+import download from "../components/landing/DownloadSection";
+import pricing from "../components/landing/PricingSection";
+import contact from "../components/landing/ContactSection";
+
 export default {
-  layout: "login",
-  name: "IndexPage",
+  layout: "landing",
+  name: "App",
+
+  components: {
+    navigation,
+    foote,
+    home,
+    about,
+    download,
+    pricing,
+    contact,
+  },
+
   data: () => ({
-    loginData: {
-      email: "",
-      password: "",
-    },
-    error: false,
+    fab: null,
+    color: "",
+    flat: null,
   }),
+
+  created() {
+    
+  },
+
+  watch: {
+    fab(value) {
+      if (value) {
+        this.color = "secondary";
+        this.flat = false;
+      } else {
+        this.color = "transparent";
+        this.flat = true;
+      }
+    },
+  },
+
+  methods: {
+    onScroll(e) {
+      if (typeof window === "undefined") return;
+      const top = window.pageYOffset || e.target.scrollTop || 0;
+      this.fab = top > 60;
+    },
+    toTop() {
+      this.$vuetify.goTo(0);
+    },
+  },
 };
 </script>
