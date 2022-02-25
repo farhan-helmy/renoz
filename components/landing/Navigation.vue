@@ -13,8 +13,8 @@
             <img :src="require('~/assets/img/logo.png')" alt="Logo" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="title">Calango</v-list-item-title>
-            <v-list-item-subtitle>WEB</v-list-item-subtitle>
+            <v-list-item-title class="title">RENOZ</v-list-item-title>
+            <v-list-item-subtitle>Your trusted renovation service</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -62,13 +62,13 @@
           <span class="mr-2">Home</span>
         </v-btn>
         <v-btn text @click="$vuetify.goTo('#features')">
-          <span class="mr-2">About</span>
+          <span class="mr-2">Book Service</span>
         </v-btn>
         <v-btn text @click="$vuetify.goTo('#download')">
-          <span class="mr-2">Download</span>
+          <span class="mr-2">About</span>
         </v-btn>
         <v-btn text @click="$vuetify.goTo('#pricing')">
-          <span class="mr-2">Preços</span>
+          <span class="mr-2">Team</span>
         </v-btn>
         <v-btn rounded outlined text @click="$vuetify.goTo('#contact')">
           <span class="mr-2">Login</span>
@@ -96,10 +96,10 @@ export default {
     isXs: false,
     items: [
       ["mdi-home-outline", "Home", "#hero"],
-      ["mdi-information-outline", "Sobre", "#features"],
-      ["mdi-download-box-outline", "Download", "#download"],
-      ["mdi-currency-usd", "Preços", "#pricing"],
-      ["mdi-email-outline", "Contatos", "#contact"],
+      ["mdi-information-outline", "Book Service", "#features"],
+      ["mdi-download-box-outline", "About", "#download"],
+      ["mdi-currency-usd", "Team", "#pricing"],
+      ["mdi-email-outline", "Login", "#contact"],
     ],
   }),
   props: {
